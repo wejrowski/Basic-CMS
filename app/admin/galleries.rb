@@ -1,10 +1,11 @@
-ActiveAdmin.register Page do
+ActiveAdmin.register Page, :as => "Gallery" do
 
-  config.comments = false #Gets rid of some error
+#  config.comments = false #Gets rid of some error
   
   # Create sections on the index screen
-  scope :pages, :default => true
-  #scope :galleries
+  #scope :pages, :default => true
+  scope :galleries, :default => true
+  
   
   
   form do |f|
@@ -36,7 +37,7 @@ ActiveAdmin.register Page do
     
     def new
       @page = Page.new(params[:page])
-      @page.page_type = "page"
+      @page.page_type = "gallery"
       new!
     end
   end

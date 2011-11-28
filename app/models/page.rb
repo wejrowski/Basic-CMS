@@ -4,6 +4,11 @@ class Page < ActiveRecord::Base
       
   has_paper_trail
 
+  scope :galleries, where(:page_type => "gallery")
+  scope :pages, where(:page_type => "page")
+
+
+
   def admin_permalink
     admin_page_path(self)
   end
