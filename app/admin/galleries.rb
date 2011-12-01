@@ -1,21 +1,22 @@
 ActiveAdmin.register Page, :as => "Gallery" do
 
-#  config.comments = false #Gets rid of some error
+  # config.comments = false #Gets rid of comments error (not sure why that happens though)
   
-  # Create sections on the index screen
-  #scope :pages, :default => true
+
+  # I want to figure out how to hide this, 
+  # but still grap the Page.galleries
   scope :galleries, :default => true
-  
-  
   
   form do |f|
     f.inputs "Details" do
       f.input :title
       f.input :slug
-      f.input :page_type#, :as => :hidden
+      f.input :page_type, :as => :hidden, :value=>"gallery"
       f.input :content, :as => :text
-      f.input :position
       f.input :view_template
+      f.input :show_in_nav, :as=>:boolean, :label => "Show in navigation"
+      f.input :draft, :as=>:boolean, :label => "Save as a draft -- not viewable on website"
+      f.input :private, :as=>:boolean, :label => "keep private -- hide from normal users"
     end
   
     f.buttons
@@ -35,11 +36,11 @@ ActiveAdmin.register Page, :as => "Gallery" do
         show! #it seems to need this
     end
     
-    def new
-      @page = Page.new(params[:page])
-      @page.page_type = "gallery"
-      new!
-    end
+#     def new
+#       @page = Page.new(params[:page])
+#       #@page.page_type = "gallery"
+#       new!
+#     end
   end
   
   sidebar :versionate, :partial => "layouts/version", :only => :show

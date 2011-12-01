@@ -6,15 +6,38 @@ ActiveAdmin.register Page do
   scope :pages, :default => true
   #scope :galleries
   
+  # Attachments
+  # When I get to this see this option
+  # http://activeadmin.info/docs/3-index-pages/index-as-grid.html
+  
+  
+  # Filters
+  # TODO: make default filter page_type=="page"
+  filter :title
+  filter :content
+  filter :view_template
+  filter :page_type
+  
+  index do
+    column "Title" do |page|
+      link_to page.title, admin_page_path(page)
+    end
+    column :slug
+    column :position
+    column :view_template
+    column :draft
+    column :private
+    column :created_at
+    default_actions
+  end
   
   form do |f|
     f.inputs "Details" do
       f.input :title
       f.input :slug
-      f.input :page_type#, :as => :hidden
       f.input :content, :as => :text
-      f.input :position
       f.input :view_template
+      f.input :show_in_nav, :as=>:boolean
     end
   
     f.buttons

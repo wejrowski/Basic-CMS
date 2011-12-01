@@ -5,7 +5,7 @@ class CreatePages < ActiveRecord::Migration
       t.string :slug,  :null => false
       t.text :content, :default=>""
       t.integer :author_id
-      t.integer :position, :default=>""
+      t.integer :position
       t.string :view_template, :default=>""
       t.boolean :nav, :default=>0
 

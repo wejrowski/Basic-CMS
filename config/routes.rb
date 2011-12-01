@@ -3,7 +3,12 @@ BasicCms::Application.routes.draw do
 
   devise_for :admin_users, ActiveAdmin::Devise.config
   
-  match "/:slug.:format" => "pages#show"
+  # show_page will find only pages with the page_type of "page"
+  # Additional page types need to have a custom route match and custom controller
+  match "/" => "pages#show_page"
+  match "/:slug" => "pages#show_page"
+  match "/galleries/:slug" => "pages#show_gallery"
+  
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
