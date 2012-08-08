@@ -7,6 +7,7 @@ gem 'rails', '3.1.3'
 
 gem 'activeadmin'
 gem 'paper_trail'
+gem "paperclip", "~> 2.4"
 
 gem 'sqlite3'
 gem 'mysql2'

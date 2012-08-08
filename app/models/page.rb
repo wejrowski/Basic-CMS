@@ -3,6 +3,9 @@ class Page < ActiveRecord::Base
   include Rails.application.routes.url_helpers # neeeded for _path helpers to work in models
       
   has_paper_trail
+  has_many :assets, :dependent => :destroy
+  accepts_nested_attributes_for :assets, :allow_destroy => true
+
 
   before_validation :check_slug
 
