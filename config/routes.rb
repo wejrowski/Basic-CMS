@@ -1,14 +1,16 @@
 BasicCms::Application.routes.draw do
-  ActiveAdmin.routes(self)
 
-  devise_for :admin_users, ActiveAdmin::Devise.config
-  
-  # show_page will find only pages with the page_type of "page"
-  # Additional page types need to have a custom route match and custom controller
-  match "/" => "pages#show_page"
-  match "/:slug" => "pages#show_page"
-  match "/galleries/:slug" => "pages#show_gallery"
-  
+  ActiveAdmin.routes(self)
+  devise_for :admin_users, ActiveAdmin::Devise.config  
+
+  if Page.table_exists? && Page.columns.map(&:name).include?('url') # Otherwise on rake db:migrate this file will be called and throw an error
+    # Manually hook up each page url
+    Page.all.each do |page|
+      page.remap_descendant_urls if page.url.nil?
+      match page.url, :controller => 'pages', :action => 'show', :page_id => page.id
+    end
+  end
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

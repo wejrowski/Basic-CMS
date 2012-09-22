@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111205235156) do
+ActiveRecord::Schema.define(:version => 20120229201653) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -59,6 +59,17 @@ ActiveRecord::Schema.define(:version => 20111205235156) do
     t.datetime "updated_at"
   end
 
+  create_table "page_options", :force => true do |t|
+    t.integer  "pageable_id"
+    t.string   "pageable_type"
+    t.string   "browser_title"
+    t.string   "meta_keywords"
+    t.text     "meta_description"
+    t.text     "javascript"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "pages", :force => true do |t|
     t.string   "title",         :default => ""
     t.string   "slug",                              :null => false
@@ -72,6 +83,10 @@ ActiveRecord::Schema.define(:version => 20111205235156) do
     t.string   "page_type",     :default => "page"
     t.boolean  "draft",         :default => false
     t.boolean  "private",       :default => false
+    t.integer  "lft"
+    t.integer  "rgt"
+    t.integer  "parent_id"
+    t.string   "url"
   end
 
   create_table "versions", :force => true do |t|
