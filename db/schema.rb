@@ -55,8 +55,8 @@ ActiveRecord::Schema.define(:version => 20120229201653) do
     t.string   "file_content_type"
     t.integer  "file_file_size"
     t.datetime "file_updated_at"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
   end
 
   create_table "page_options", :force => true do |t|
@@ -66,16 +66,16 @@ ActiveRecord::Schema.define(:version => 20120229201653) do
     t.string   "meta_keywords"
     t.text     "meta_description"
     t.text     "javascript"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
   end
 
   create_table "pages", :force => true do |t|
     t.string   "title",         :default => ""
     t.string   "slug",                              :null => false
-    t.text     "content"
+    t.text     "content",       :default => ""
     t.integer  "author_id"
-    t.integer  "position"
+    t.integer  "position",      :default => 0
     t.string   "view_template", :default => ""
     t.boolean  "show_in_nav",   :default => false
     t.datetime "created_at"
