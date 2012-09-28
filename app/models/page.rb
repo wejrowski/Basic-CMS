@@ -75,8 +75,8 @@ class Page < ActiveRecord::Base
         p.remap_url
         p.update_column(:url, p.url)
       end
-      logger.info "EVDI::Application.reload_routes!"
-      EVDI::Application.reload_routes!
+      logger.info "BasicCms::Application.reload_routes!"
+      BasicCms::Application.reload_routes!
     end
   end
   
